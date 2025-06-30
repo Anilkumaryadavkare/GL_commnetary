@@ -55,6 +55,21 @@ def logout():
         st.success("Logged out")
         st.rerun()
 
+# def auth_gate():
+#     if "user" not in st.session_state:
+#         tabs = st.tabs(["Login", "Sign Up"])
+#         with tabs[0]:
+#             login_form()
+#         with tabs[1]:
+#             signup_form()
+#         st.stop()
+#     else:
+#         user_email = st.session_state['user'].user.email
+#         short_email = user_email[:6] + "..."
+#         with st.sidebar:
+#             st.markdown(f"👤 Logged in as - `{short_email}`")
+#             logout()
+
 def auth_gate():
     if "user" not in st.session_state:
         tabs = st.tabs(["Login", "Sign Up"])
@@ -62,10 +77,22 @@ def auth_gate():
             login_form()
         with tabs[1]:
             signup_form()
+
+        # Show Bolt.new badge on the login/signup screen
+        st.markdown("---")
+        st.markdown(
+            "[![Built with Bolt.new](https://img.shields.io/badge/Built%20with-Bolt.new-blue?style=for-the-badge)](https://bolt.new)",
+            unsafe_allow_html=True
+        )
         st.stop()
     else:
         user_email = st.session_state['user'].user.email
-        short_email = user_email[:6] + "..."
+        short_email = user_email[:5] + "..."
         with st.sidebar:
             st.markdown(f"👤 Logged in as - `{short_email}`")
             logout()
+            st.markdown("---")
+            st.markdown(
+                "[![Built with Bolt.new](https://img.shields.io/badge/Built%20with-Bolt.new-blue?style=for-the-badge)](https://bolt.new)",
+                unsafe_allow_html=True
+            )

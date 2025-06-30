@@ -14,16 +14,27 @@ auth_gate()  # Will show login/signup if not logged in
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+# load_dotenv()
 
 # --- Streamlit Config ---
 st.set_page_config(page_title="GL Analytics Pro", layout="wide", page_icon="💼")
 
 # --- Azure Config ---
-AZURE_OPENAI_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
-AZURE_OPENAI_MODEL_NAME = os.getenv("AZURE_OPENAI_MODEL_NAME")
-AZURE_OPENAI_API_KEY = os.getenv("AZURE_OPENAI_API_KEY")
-AZURE_OPENAI_API_VERSION = os.getenv("AZURE_OPENAI_API_VERSION")
+# AZURE_OPENAI_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
+# AZURE_OPENAI_MODEL_NAME = os.getenv("AZURE_OPENAI_MODEL_NAME")
+# AZURE_OPENAI_API_KEY = os.getenv("AZURE_OPENAI_API_KEY")
+# AZURE_OPENAI_API_VERSION = os.getenv("AZURE_OPENAI_API_VERSION")
+
+
+# --- Azure OpenAI Configuration ---
+try:
+    AZURE_OPENAI_ENDPOINT = st.secrets["AZURE_OPENAI_ENDPOINT"]
+    AZURE_OPENAI_MODEL_NAME = st.secrets["AZURE_OPENAI_MODEL_NAME"]
+    AZURE_OPENAI_API_KEY = st.secrets["AZURE_OPENAI_API_KEY"]
+    AZURE_OPENAI_API_VERSION = st.secrets["AZURE_OPENAI_API_VERSION"]
+except AttributeError as e:
+    st.error(f"Azure OpenAI secrets missing or incorrectly configured: {e}")
+    st.stop()
 
 # --- Helper Functions ---
 def initialize_openai():

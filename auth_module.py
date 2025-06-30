@@ -6,10 +6,18 @@ from supabase import create_client, Client
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+# load_dotenv()
+#
+# SUPABASE_URL = os.getenv("SUPABASE_URL")
+# SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+# --- Supabase Configuration ---
+try:
+    SUPABASE_URL = st.secrets["SUPABASE_URL"]
+    SUPABASE_KEY = st.secrets["SUPABASE_KEY"]
+except KeyError:
+    st.error("Supabase URL and/or Key not found in Streamlit secrets.")
+    st.stop() # Stop the app if essential secrets are missing
 
 @st.cache_resource
 def init_supabase() -> Client:

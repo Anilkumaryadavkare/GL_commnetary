@@ -8,14 +8,22 @@ from datetime import datetime
 from typing import List
 from concurrent.futures import ThreadPoolExecutor
 
+from auth_module import auth_gate
+auth_gate()  # Will show login/signup if not logged in
+
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 # --- Streamlit Config ---
 st.set_page_config(page_title="GL Analytics Pro", layout="wide", page_icon="💼")
 
 # --- Azure Config ---
-AZURE_OPENAI_ENDPOINT = "https://anilk-maqg6o7m-eastus2.cognitiveservices.azure.com/"
-AZURE_OPENAI_MODEL_NAME = "gpt-4"
-AZURE_OPENAI_API_KEY = "7AOJWoLBYXQjchlS1pmG3EzPjJASQF0xCaBjXthpTSXMBW4GQXPLJQQJ99BEACHYHv6XJ3w3AAAAACOGuXgsAK"
-AZURE_OPENAI_API_VERSION = "2024-12-01-preview"
+AZURE_OPENAI_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
+AZURE_OPENAI_MODEL_NAME = os.getenv("AZURE_OPENAI_MODEL_NAME")
+AZURE_OPENAI_API_KEY = os.getenv("AZURE_OPENAI_API_KEY")
+AZURE_OPENAI_API_VERSION = os.getenv("AZURE_OPENAI_API_VERSION")
 
 # --- Helper Functions ---
 def initialize_openai():

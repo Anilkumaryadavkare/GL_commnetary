@@ -1,3 +1,6 @@
+
+[![Built with Bolt.new](https://img.shields.io/badge/Built%20with-Bolt.new-blue?style=for-the-badge)](https://bolt.new)
+
 # 💼 GL Commentary App
 
 A powerful Streamlit-based app that generates executive-level and analyst-level financial commentary from SAP general ledger data. It uses Azure OpenAI (GPT-4) to summarize large volumes of account-level variances between reporting periods.

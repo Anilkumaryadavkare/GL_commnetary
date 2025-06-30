@@ -1,0 +1,13 @@
+
+#core
+pandas
+streamlit
+openai
+openpyxl
+xlsxwriter
+
+#supabase
+supabase
+
+# Optional but recommended
+python-dotenv  # For externalizing keys and secrets
